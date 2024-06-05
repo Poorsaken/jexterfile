@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+
+.left-container{
+
+
+    width: 20%;
+}
+
+.right-container{
+
+
+    width: 80%;
+}
+
+.parent_container{
+
+
+    display: flex;
+}
