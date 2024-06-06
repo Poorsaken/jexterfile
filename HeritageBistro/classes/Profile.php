@@ -100,65 +100,37 @@ function StaffCreateAccount($req) {
 }
 
 
+function CustomerReservationInsert($req) {
+    $con = Database::getConnection(); // Get the database connection
 
+    $customer_name = $req['customer_name'];
+    $time = $req['time'];
+    $date = $req['date'];
+    $phone_number = $req['phone_number'];
+    $guest = $req['guest'];
 
+    try {
+        // Prepare and execute the SQL statement
+        $sql = "INSERT INTO `tbl_reservation` (customer_name, time, date, phone_number, guest) 
+                VALUES (:customer_name, :time, :date, :phone_number, :guest)";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':customer_name', $customer_name);
+        $stmt->bindParam(':time', $time);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':phone_number', $phone_number);
+        $stmt->bindParam(':guest', $guest);
+        $stmt->execute();
 
-//  function GetAllEvents(){
-//     $con = Database::getConnection();
-//     try {
-//         $sql = "SELECT * FROM `tbl_events` ORDER BY id";
-//         $stmt = $con->prepare($sql);
-//         $stmt->execute();
+        // Success alert and redirection
+        echo "<script>alert('Inserted Successfully'); window.location.href='CustomerReservation.php';</script>";
+        exit(); // Ensure no further code is executed after redirection
 
-//         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-//     } catch (PDOException $e) {
-//         echo "Error: " . $e->getMessage();
-//     }
-// }
+    } catch (PDOException $e) {
+        // Output a JavaScript snippet to trigger an alert for error
+        echo "<script>alert('Error: " . $e->getMessage() . "');</script>";
+    }
+}
 
-//  function GetAllApprovedEvents(){
-//     $con = Database::getConnection();
-//     try {
-//         $sql = "SELECT * FROM `tbl_approvedevents` ORDER BY id";
-//         $stmt = $con->prepare($sql);
-//         $stmt->execute();
-
-//         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-//     } catch (PDOException $e) {
-//         echo "Error: " . $e->getMessage();
-//     }
-// }
-
-
-
-
-
-//  function ApproveProduct($product_id){
-//     $con = Database::getConnection();
-
-//     try {
-//         // Fetch product details from tbl_products
-//         $sql = "SELECT * FROM tbl_events WHERE id = $product_id";
-//         $result = $con->query($sql);
-//         $product = $result->fetch(PDO::FETCH_ASSOC);
-
-//         if ($product) {
-//             // Insert product details into tbl_deletedproducts
-//             $sql = "INSERT INTO tbl_approvedevents
-//                     (name, date, timefrom, timeto, venue)
-//                     VALUES
-//                     ('{$product['name']}', '{$product['date']}', '{$product['timefrom']}', '{$product['timeto']}','{$product['venue']}')";
-//             $con->exec($sql);
-
-//             $sql = "DELETE FROM tbl_events WHERE id = $product_id";
-//             $con->exec($sql);
-//         } else {
-//             echo "";
-//         }
-//     } catch(PDOException $e) {
-//         echo "Error: " . $e->getMessage();
-//     }
-// }
 
 
 
