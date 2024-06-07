@@ -1,6 +1,7 @@
 <?php
 class Menus
 {
+    // ADDING NEW MENU
     function addMenu($data, $file, $destination = '')
     {
         global $con;
@@ -36,7 +37,7 @@ class Menus
         if ($uploadOk == 1) {
             if (move_uploaded_file($file["tmp_name"], $target_file)) {
                 try {
-                    $sql = "INSERT INTO tbl_menus (menu_name, description, price, category, image) VALUES (:menu_name, :description, :price, :category, :image)";
+                    $sql = "INSERT INTO tbl_menus (menu_name, description, price, category, status, image) VALUES (:menu_name, :description, :price, :category, 1, :image)";
                     $stmt = $con->prepare($sql);
                     $stmt->execute([
                         ':menu_name' => $menu_name,
@@ -56,56 +57,53 @@ class Menus
             echo "Sorry, your file was not uploaded.";
         }
     }
-
+    // DISPLAY MENU WITH THE STATUS OF 1 WHICH IS ACTIVE
     function displayMenu()
     {
         global $con;
 
-        $sql = "SELECT * FROM tbl_menus ORDER BY id";
+        $sql = "SELECT * FROM tbl_menus WHERE status = 1 ORDER BY id";
 
         $stmt = $con->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
-    function getMenuById($id) {
-        global $con;
-    
-        $sql = "SELECT * FROM tbl_menus WHERE id = :id";
-    
-        $stmt = $con->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    
-        return $stmt->fetchAll(PDO::FETCH_BOTH);
-    }
-
-    function updateMenu($data)
+    // DISPLAY THE SPECIFIC DATA OF THAT ID
+    function getMenuById($id)
     {
         global $con;
 
-        $menu_id = $data['menu_id']; // Assuming you have a field for menu_id in your form
-        $menu_name = $data['menu_name'];
-        $description = $data['description'];
-        $price = $data['price'];
-        $category = $data['category'];
+        $sql = "SELECT * FROM tbl_menus WHERE id = :id";
 
-        try {
-            $sql = "UPDATE tbl_menus SET menu_name = :menu_name, description = :description, price = :price, category = :category WHERE id = :menu_id";
-            $stmt = $con->prepare($sql);
-            $stmt->execute([
-                ':menu_id' => $menu_id,
-                ':menu_name' => $menu_name,
-                ':description' => $description,
-                ':price' => $price,
-                ':category' => $category
-            ]);
-            echo '<script>alert("Menu updated successfully!");</script>';
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
+    // UPDATING THE MENU WITHOUT CHANGIN THE IMAGE
+    function updateMenu($id, $menu_name, $category, $price, $description)
+    {
+        global $con;
 
+        $sql = "UPDATE tbl_menus SET menu_name = :menu_name, category = :category, price = :price, description = :description WHERE id = :id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':menu_name', $menu_name);
+        $stmt->bindValue(':category', $category);
+        $stmt->bindValue(':price', $price);
+        $stmt->bindValue(':description', $description);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    // THIS IS FOR DELETING WHICH MEANS JUST UPDATING THE STATUS TO 0 WHICH IS DELETED
+    function deleteMenu($id) {
+        global $con;
 
+        $sql = "UPDATE tbl_menus SET status = 0 WHERE id = :id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
 ?>

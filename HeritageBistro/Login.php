@@ -30,7 +30,7 @@ $Account -> checkUser($_REQUEST);
       <input type="submit" value="Login" name = "btn" id = "btn" class="btn mb-2">
     </form>
     <div class="create-account">
-      I don't have an Account? <a href="userSignup.php">Create Account</a>
+      Don't have an Account? <a href="Signup.php">Create Account</a>
     </div>
 
     </div>
