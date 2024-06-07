@@ -7,25 +7,41 @@ if (isset ($_REQUEST['btn']))
 $Account -> checkUser($_REQUEST);
 }
 ?>
-<div class="container">
-    <div class="content w-25">
-    <h2 class="mb-4">Login </h2>
-    <form method="POST">
+<div class="login-container">
+
+    <div class="form-wrapper">
+
+<div class="content w-25">
+
+    <div class="form-login">
+      <div class="logo">
+        <img src='./img/HB 1.png' id="logo" alt=''> 
+      </div>
+<h class="mb-4">Welcome! </h>
+<form method="POST">
     <div class="form-outline">
+      <label class="form-label" for="username">Username</label><br/>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username"/>
-        <label class="form-label" for="username">Username</label>
       </div>
       <div class="form-outline">
+        <label class="form-label" for="password">Password</label><br/>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
-        <label class="form-label" for="password">Password</label>
       </div>
       <input type="submit" value="Login" name = "btn" id = "btn" class="btn mb-2">
     </form>
     <div class="create-account">
-      Don't have an account? <a href="userSignup.php">Create Account</a>
+      I don't have an Account? <a href="userSignup.php">Create Account</a>
     </div>
+
+    </div>
+    
+
+
+    
     </div>
   </div>
+    </div>
+    
 <?php 
 include ('includes/footer.php');
 ?>
