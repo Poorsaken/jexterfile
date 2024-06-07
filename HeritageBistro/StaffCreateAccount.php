@@ -9,7 +9,7 @@ global $DB;
 global $con;
 
       $Signup = new Profile();
-      $DB = new Database(); //instantiation
+      $DB = new Database();
       $DB->connectDB();
       if (isset($_REQUEST['btn'])) {
         $Signup->StaffCreateAccount($_REQUEST);
