@@ -49,7 +49,7 @@ include('./routes/router.php');
    
     <div class="navlinks" id="active-events">
         <div class="nav_icon">
-            <img src="./img/active_icon.png"/>
+            <img src="img/homeicon.png"/>
         </div>
         <div class="nav_title">
             <a onclick="HomePage(); setActiveNavLink('active-events')">Home Page</a>
@@ -58,7 +58,7 @@ include('./routes/router.php');
 
     <div class="navlinks" id="cancelled-events">
         <div class="nav_icon">
-            <img src="./img/cancel_icon.png"/>
+            <img src="img/view.png"/>
         </div>
         <div class="nav_title">
             <a onclick="MenuView(); setActiveNavLink('cancelled-events')">View Menu</a>

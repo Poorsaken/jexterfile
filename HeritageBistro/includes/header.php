@@ -12,6 +12,7 @@ $DB->connectDB();
     <link rel="stylesheet" type="text/css" href="css/logins.css">
     <link rel="stylesheet" type="text/css" href="css/signup.css">
     <link rel="stylesheet" type="text/css" href="css/addmenu.css">
+    <link rel="stylesheet" type="text/css" href="css/MenuUpdateView.css">
     
     <link rel="stylesheet" type="text/css" href="css/order.css">
     <link rel="stylesheet" type="text/css" href="css/index-parents.css">

@@ -13,6 +13,8 @@ if (isset($_POST['delete'])) {
 }
 
 
+$username = $_SESSION['username'];
+$userid = $_SESSION['userid'];
 ?>
 
 <div class="index-parent">
@@ -26,46 +28,66 @@ if (isset($_POST['delete'])) {
     </div>
     <div class="right-content">
 
-    <table class="table table-bordered">
-        <div class="container">
-        <thead>
-            <tr>
-                <th>Menu Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($MenuList as $menu){ ?>
-            <tr>
-                <td><?php echo $menu['menu_name']; ?></td>
-                <td><?php echo $menu['description']; ?></td>
-                <td><?php echo $menu['price']; ?></td>
-                <td><?php echo $menu['category']; ?></td>
-                <td>
-                    <?php if ($menu['image']) { ?>
-                        <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image" class="rounded-circle img-fluid" width="100">
-                    <?php } else { ?>
-                        No Image
-                    <?php } ?>
-                </td>
-                <td>
+<div class="welcome-header-food" style="border-bottom: 1px solid rgba(0, 0, 0, 0.55); margin-bottom: 5px;" >
+    <div class="welcome-food" >
+        <h>Welcome, <?php echo $username , $userid; ?>!</h>
+        <p>View your menu</p>
+       
+    </div>
+</div>
+
+
+<div class="food-flexes">
+<?php foreach ($MenuList as $menu){ ?>
+    
+        
+        <div class="food-card-body">
+
+           <div class="food-card-image" >
+    <?php if ($menu['image']) { ?>
+        <img src="/JEXTERDIAYKA/jexterfile/HeritageBistro/uploaded_image/<?php echo $menu['image']; ?>" alt="User Image" class="food-rounded-circle food-img-fluid" width="100" style="object-fit: cover; width: 100%; height: 100%;">
+    <?php } else { ?>
+        <p>No Image</p>
+    <?php } ?>
+</div>
+
+
+
+            <div class="food-descriptions">
+
+            <h class="food-card-title"> <?php echo $menu['menu_name']; ?></h>
+           
+            <p class="food-card-text-price"><?php echo $menu['price']; ?></p>
+
+            <p class="food-card-text">
+              <?php echo $menu['category']; ?> </p>
+          
+            <div class="food-category">
+                <p><strong>Description:</strong></p>
+                <p class="food-card-text"><?php echo $menu['description']; ?></p>
+            </div>
+
+            <div class="food-card-actions">
                 <!-- <form action="MenuUpdate.php" method="GET" style="display:inline;">
-                            <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
-                            <button type="submit">Update</button>
-                        </form>
-                        <form action="" method="POST" style="display:inline;">
-                            <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
-                            <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this menu?')">Delete</button>
-                        </form> -->
-                </td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+                    <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
+                    <button type="submit" class="food-btn food-btn-primary">Update</button>
+                </form>
+                <form action="" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
+                    <button type="submit" name="delete" class="food-btn food-btn-danger" onclick="return confirm('Are you sure you want to delete this menu?')">Delete</button>
+                </form> -->
+            </div>
+            
+            </div>
+
+            
+        </div>
+    
+<?php } ?>
+
+</div>
+ 
+
     </div>
 
 

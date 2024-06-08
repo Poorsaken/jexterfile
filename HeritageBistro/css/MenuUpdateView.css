@@ -1,0 +1,106 @@
+*{
+
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+
+
+.food-card-body {
+    width: 700px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    margin: 1%;
+    border: 1px solid rgba(46, 46, 46, 0.2);
+    border-radius: 10px;
+}
+
+.food-card-image {
+    width: 400px;
+    background-color: beige;
+    position: relative;
+    overflow: hidden;
+}
+
+.food-descriptions {
+    width: 70%;
+    padding: 3%;
+}
+
+.food-card-title {
+    font-size: 20px;
+
+}
+
+.food-card-actions {
+  
+    height: auto;
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.food-card-actions button{
+
+    width: 160px;
+    height: 40px;
+    margin-right: 5%;
+    border: none;
+    background-color: #9E0505;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.food-category .food-card-text {
+    height: 100px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.food-category{
+
+    margin-top: 3%;
+}
+
+.food-card-text{
+
+    margin-top: 2%;
+}
+
+.food-card-text-price{
+
+    font-size: 25px;
+     color: #9E0505;
+    font-weight: 500;
+    
+}
+
+
+.food-flexes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.welcome-header-food{
+    
+     padding: 3%;
+    display: flex;
+    justify-content: flex-start;
+    height: 150px;
+   
+}
+
+.welcome-food p{
+
+    opacity: 70%;
+}
+
+.welcome-header-food h{
+
+
+    font-size: 25px;
+}
