@@ -90,18 +90,11 @@ include('./routes/router.php');
             <img src="img/clarity_update-line.png"/>
         </div>
         <div class="nav_title">
-            <a onclick="MenuUpdate(); setActiveNavLink('update-event')">Update Menu</a>
+            <a onclick="MenuUpdate(); setActiveNavLink('update-event')">Update & Delete Menu</a>
         </div>
     </div>
 
-    <div class="navlinks" id="delete-event">
-        <div class="nav_icon">
-            <img src="./img/delete_icon.png"/>
-        </div>
-        <div class="nav_title">
-            <a onclick="DeleteEvents(); setActiveNavLink('delete-event')">Delete Event</a>
-        </div>
-    </div>
+   
 
     </div>
     
