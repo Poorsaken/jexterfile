@@ -10,8 +10,7 @@ include('./routes/router.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="../css/navigation.css"/> -->
-    <link rel = "stylesheet" href = "./css/navigation.css"/>
+    <link rel="stylesheet" href="./css/sidetabs.css"/>
     <script>
         // Function to set the active navlink
         function setActiveNavLink(id) {
@@ -44,60 +43,68 @@ include('./routes/router.php');
 
 <div class="parents">
     <div class="logo">
-        <h1>Heritage Bistro</h1>
-    </div>
-
-    <div class="dashbord_menu">
-        <div class="dash-img">
-            <img src = "../img/mage_dashboard.png"/>
-        </div>
-        <div class="dash-p">
-            <p>Dashboard</p>
-        </div>
+        <h1>Eventr</h1>
     </div>
 
    
     <div class="navlinks" id="active-events">
-       
+        <div class="nav_icon">
+            <img src="./img/active_icon.png"/>
+        </div>
         <div class="nav_title">
-            <a onclick="ActiveEvents(); setActiveNavLink('active-events')">Order Process</a>
+            <a onclick="HomePage(); setActiveNavLink('active-events')">Home Page</a>
         </div>
     </div>
 
     <div class="navlinks" id="cancelled-events">
-     
+        <div class="nav_icon">
+            <img src="./img/cancel_icon.png"/>
+        </div>
         <div class="nav_title">
-            <a onclick="CancelledEvents(); setActiveNavLink('cancelled-events')">Cancelled Orders</a>
+            <a onclick="MenuView(); setActiveNavLink('cancelled-events')">View Menu</a>
         </div>
     </div>
-   <div class="dashbord_menu">
-        <div class="dash-img">
-            <img src = "../img/mage_dashboard.png"/>
-        </div>
-        <div class="dash-p">
-            <p>Manage Dish</p>
-        </div>
+   
+    <div class="menu-custom">
+
+    <div class="customize">
+        <div class="nav_icon">
+                   <img src="img/fluent_food-32-regular.png"/>
+                </div>
+                <div class="nav_title">
+                    <p>Customize Menu</p>
+                </div>
     </div>
-    <div class="navlinks" id="add-event">
-     
+        
+<div class="navlinks" id="add-event">
+        <div class="nav_icon">
+            <img src="img/basil_add-outline.png"/>
+        </div>
         <div class="nav_title">
-            <a onclick="AddMenu(); setActiveNavLink('add-event')">Add Menu</a>
+            <a onclick="MenuAdd(); setActiveNavLink('add-event')">Add Menu</a>
         </div>
     </div>
 
     <div class="navlinks" id="update-event">
-      
+        <div class="nav_icon">
+            <img src="img/clarity_update-line.png"/>
+        </div>
         <div class="nav_title">
-            <a onclick="UpdateEvents(); setActiveNavLink('update-event')">Update Menu</a>
+            <a onclick="MenuUpdate(); setActiveNavLink('update-event')">Update Menu</a>
         </div>
     </div>
 
     <div class="navlinks" id="delete-event">
-        
+        <div class="nav_icon">
+            <img src="./img/delete_icon.png"/>
+        </div>
         <div class="nav_title">
-            <a onclick="DeleteEvents(); setActiveNavLink('delete-event')">Delete Menu</a>
+            <a onclick="DeleteEvents(); setActiveNavLink('delete-event')">Delete Event</a>
         </div>
     </div>
+
+    </div>
+    
 
     <div class="logout" onclick="Logout()">
         <div class="logout_text">

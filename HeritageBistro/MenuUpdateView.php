@@ -11,8 +11,6 @@ if (isset($_POST['delete'])) {
   header("Location: ".$_SERVER['PHP_SELF']);
   exit;
 }
-
-
 ?>
 
 <div class="index-parent">
@@ -53,14 +51,14 @@ if (isset($_POST['delete'])) {
                     <?php } ?>
                 </td>
                 <td>
-                <!-- <form action="MenuUpdate.php" method="GET" style="display:inline;">
+                <form action="MenuUpdate.php" method="GET" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
                             <button type="submit">Update</button>
                         </form>
                         <form action="" method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
                             <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this menu?')">Delete</button>
-                        </form> -->
+                        </form>
                 </td>
             </tr>
             <?php } ?>

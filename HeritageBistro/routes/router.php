@@ -9,28 +9,21 @@
     
 <script>
       
-        function Logout() {
-            window.location.href = 'logout.php';
-        }
-        function ActiveEvents() {
-            window.location.href = 'landingpage.php';
-        }
-        function CancelledEvents() {
-            window.location.href = 'cancelledevents.php';
-        }
-        function AddMenu() {
-            window.location.href = 'addmenu.php';
-        }
-        function UpdateEvents() {
-            window.location.href = 'updatevents.php';
-        }
-        function DeleteEvents() {
-            window.location.href = 'deleteevents.php';
-        }
-        function EventApproval() {
-            window.location.href = 'eventapproval.php';
+        function MenuAdd() {
+            window.location.href = 'MenuAdd.php';
         }
 
+        function HomePage() {
+            window.location.href = 'index.php';
+        }
+        function MenuView() {
+            window.location.href = 'MenuDisplay.php';
+        }
+      
+        function MenuUpdate(){
+         window.location.href = 'MenuUpdateView.php';
+
+        }
     </script>
 
 </body>

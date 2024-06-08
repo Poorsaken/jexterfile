@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    font-family:'Poppins';
 }
 
 
@@ -23,4 +23,136 @@
 
 
     display: flex;
+}
+
+#menu_name{
+
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+  
+     border: 1px solid rgba(46, 46, 46, 0.2);
+}
+
+#price{
+
+    width: 100px;
+    padding: 15px;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+     border: 1px solid rgba(46, 46, 46, 0.2);
+}
+
+ #menu_image{
+ width: 150px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+     border: 1px solid rgba(46, 46, 46, 0.2);
+}
+
+#description{
+
+
+width: 300px;
+height: 90px;
+  border: 1px solid rgba(46, 46, 46, 0.2);
+padding: 15px;
+}
+
+.welcome-header{
+    
+     padding: 3%;
+    display: flex;
+    justify-content: flex-start;
+    height: 100px;
+   
+}
+
+.welcome p{
+
+    opacity: 70%;
+}
+
+.welcome-header h{
+
+
+    font-size: 25px;
+}
+
+.category-container{
+
+    display: flex;
+}
+
+.left-category , .right-category{
+
+
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 5%;
+
+}
+
+.menu-form{
+    margin:3%;
+    padding: 3%;
+    border-radius: 15px;
+    border: 1px solid rgba(46, 46, 46, 0.2);
+}
+
+.addmenu h1{
+
+    font-family: 16px;
+    font-weight: 500;
+
+}
+
+.addmenu{
+
+    margin-bottom: 3%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.55);
+}
+
+.addmenu p{
+
+    opacity: 85%;
+
+}
+
+#price-image{
+
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+}
+
+#price-image .parent-flex{
+
+
+    width: 10%;
+}
+
+#description-parent{
+
+    margin-top: 2%;
+}
+.addmenubtn{
+
+    width: 250px;
+    height: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color: #9E0505;
 }

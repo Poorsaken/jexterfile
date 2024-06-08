@@ -45,11 +45,11 @@
     
 }
 
-a{
+.create-account a{
 
     text-decoration: none;
     list-style: none;
-    color: #9E0505;
+    color: #f5f5f5;
     font-weight: 500;
 }
 .form-control {

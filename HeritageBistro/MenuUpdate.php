@@ -31,8 +31,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="container">
-    <form action="" method="POST" id="myForm" enctype="multipart/form-data">
+<div class="index-parent">
+
+<div class="left-navigation">
+    <?php 
+    include('./navigation/navigation.php');
+    ?>
+</div>
+<div class="right-content">
+
+<form action="" method="POST" id="myForm" enctype="multipart/form-data">
         <div class="parent">
             <!-- Menu Name -->
             <div class="parent-flex">
@@ -70,5 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button name="btn" id="btn" class="submit_btn">SUBMIT</button>
         </div>
     </form>
+
 </div>
+</div>
+
+
+    
+
 <?php include ('includes/footer.php'); ?>
