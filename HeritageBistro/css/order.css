@@ -1,13 +1,16 @@
-.order-container{
+.form-container{
+    display: flex;
+    background-color: aquamarine;
+    padding: 1rem;
+}
+.menu-items-details{
     width: 100%;
-    height: 100dvh;
 }
 .menu-items-container{
-    display:flex;
-    width: 80vw;
-    content: "";
+    width: 100%;
+    display: flex;
+    flex-wrap: 1;
     gap: 1rem;
-    padding: 5%;
 }
 .card{
     width: 150px;

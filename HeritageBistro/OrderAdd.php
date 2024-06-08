@@ -28,12 +28,11 @@ if (isset($_POST['btn'])) {
 ?>
 
 <div class="order-container">
-    <form action="" method="POST" id="myForm">
+    <form action="" method="POST" id="myForm" class="form-container">
         <div class="menu-items-details">
             <table id="selectedMenuDetails">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Menu Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -41,93 +40,86 @@ if (isset($_POST['btn'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>Image</th>
-                        <td>Menu Name</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Subtotal</td>
-                    </tr>
+                    <!-- Diri ma ginuwa ang mga orders mo  -->
                 </tbody>
             </table>
+            <h2>Total Amount: ₱<span id="totalAmountDisplay">0.00</span></h2>
+            <input type="hidden" name="total_amount" id="total_amount" value="0">
+            <button type="submit" name="btn">Place Order</button>
         </div>
         <div id="menu_items" class="menu-items-container">
-            <!-- Display menus as cards -->
             <?php foreach ($MenuList as $menu) { ?>
                 <div class="menu-item card"
-                    onclick="selectMenu(<?php echo $menu['id']; ?>, '<?php echo $menu['menu_name']; ?>', <?php echo $menu['price']; ?>)">
+                    onclick="selectMenu(<?php echo $menu['id']; ?>, '<?php echo $menu['menu_name']; ?>', <?php echo $menu['price']; ?>, '<?php echo $menu['image']; ?>')">
                     <div class="card-body">
                         <div class="card-img">
                             <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image"
                                 class="rounded-circle img-fluid" width="100">
                         </div>
-
                         <h5 class="card-title"><?php echo $menu['menu_name']; ?></h5>
-                        <p class="card-text">Price: $<?php echo number_format($menu['price'], 2); ?></p>
+                        <p class="card-text">Price: ₱<?php echo number_format($menu['price'], 2); ?></p>
                     </div>
                 </div>
             <?php } ?>
         </div>
-        <input type="hidden" name="total_amount" id="total_amount" value="0">
-        <!-- Menu items -->
-
-
-
-        <!-- <button type="button" id="add_item">Add Item</button> -->
-        <button type="submit" name="btn">Place Order</button>
     </form>
 </div>
 <script>
-    function selectMenu(menuId, menuName, price) {
-    const menuDetails = document.getElementById('selectedMenuDetails');
-    const existingRow = document.querySelector(`tr[data-menu-id="${menuId}"]`);
+    function selectMenu(menuId, menuName, price, image) {
+        const menuDetails = document.getElementById('selectedMenuDetails');
+        const existingRow = document.querySelector(`tr[data-menu-id="${menuId}"]`);
 
-    if (existingRow) {
-        const quantityField = existingRow.querySelector('input[name="quantity[]"]');
-        quantityField.value = parseInt(quantityField.value) + 1; // Increase quantity by 1
-        updateSubtotal(existingRow); // Update subtotal for the existing row
-    } else {
-        const newRow = document.createElement('tr');
-        newRow.setAttribute('data-menu-id', menuId); // Set data attribute for menu ID
-        newRow.innerHTML = `
-            <td><img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="Menu Image" class="card-img" style="width: 75px; height: 75px;"></td>
+        if (existingRow) {
+            const quantitySpan = existingRow.querySelector('.quantity');
+            const quantityInput = existingRow.querySelector('input[name="quantity[]"]');
+            quantityInput.value = parseInt(quantityInput.value) + 1; // Increase quantity by 1
+            quantitySpan.textContent = quantityInput.value; // Update displayed quantity
+            updateSubtotal(existingRow); // Update subtotal for the existing row
+        } else {
+            const newRow = document.createElement('tr');
+            newRow.setAttribute('data-menu-id', menuId); // Set data attribute for menu ID
+            newRow.innerHTML = `
+            <td><img src="./uploaded_image/${image}" alt="Menu Image" class="rounded-circle img-fluid" width="100"></td>
             <td>${menuName}</td>
-            <td>$${price.toFixed(2)}</td>
-            <td><input type="number" name="quantity[]" value="1" min="1" required></td>
-            <td>$<span class="subtotal">${price.toFixed(2)}</span></td>
+            <td>₱${price.toFixed(2)}</td>
+            <td><span class="quantity">1</span><input type="hidden" name="quantity[]" value="1"></td>
+            <td>₱<span class="subtotal">${price.toFixed(2)}</span></td>
             <input type="hidden" name="menu_id[]" value="${menuId}">
             <input type="hidden" name="menu_name[]" value="${menuName}">
             <input type="hidden" name="price[]" value="${price.toFixed(2)}">
         `;
-        menuDetails.appendChild(newRow);
+            menuDetails.appendChild(newRow);
+        }
+
+        updateTotalAmount(); // Update total amount
     }
 
-    updateTotalAmount(); // Update total amount
-}
+    function updateSubtotal(row) {
+        const price = parseFloat(row.querySelector('td:nth-child(3)').textContent.replace('₱', ''));
+        const quantity = parseInt(row.querySelector('input[name="quantity[]"]').value);
+        const subtotal = price * quantity;
+        row.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+    }
 
+    function updateTotalAmount() {
+        const quantities = document.querySelectorAll('input[name="quantity[]"]');
+        let total = 0;
+        quantities.forEach((input) => {
+            const price = input.parentElement.parentElement.querySelector('input[name="price[]"]').value;
+            const quantity = input.value;
+            total += price * quantity;
+        });
+        document.getElementById('total_amount').value = total.toFixed(2);
+        document.getElementById('totalAmountDisplay').textContent = total.toFixed(2);
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const menuItems = document.getElementById('menu_items');
-        let itemId = <?php echo count($MenuList) + 1; ?>;
-
-        // Update total amount when quantity changes
-        menuItems.addEventListener('change', (e) => {
+        document.getElementById('selectedMenuDetails').addEventListener('change', (e) => {
             if (e.target.name === 'quantity[]') {
+                updateSubtotal(e.target.closest('tr'));
                 updateTotalAmount();
             }
         });
-
-        // Calculate total amount
-        function updateTotalAmount() {
-            const quantities = document.querySelectorAll('input[name="quantity[]"]');
-            let total = 0;
-            quantities.forEach((input) => {
-                const price = input.parentElement.querySelector('input[name="price[]"]').value;
-                const quantity = input.value;
-                total += price * quantity;
-            });
-            document.getElementById('total_amount').value = total.toFixed(2);
-        }
     });
 </script>
 
