@@ -27,78 +27,116 @@ if (isset($_POST['btn'])) {
 }
 ?>
 
+
+<div class="index-parent">
+
+
+<div class="left-navigationS">
+    <!-- <?php 
+    include('./navigation/navigation.php');
+    ?> -->
+</div>
+<div class="right-content">
+
+
 <div class="order-container">
+
+    
+
     <form action="" method="POST" id="myForm" class="form-container">
-        <div class="menu-items-details">
-            <table id="selectedMenuDetails">
-                <thead>
-                    <tr>
-                        <th>Menu Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Diri ma ginuwa ang mga orders mo  -->
-                </tbody>
-            </table>
-            <h2>Total Amount: ₱<span id="totalAmountDisplay">0.00</span></h2>
-            <input type="hidden" name="total_amount" id="total_amount" value="0">
-            <button type="submit" name="btn">Place Order</button>
-        </div>
+
+    <div class="display-order-container">
+            <div class="left-order">
+
+     
         <div id="menu_items" class="menu-items-container">
             <?php foreach ($MenuList as $menu) { ?>
                 <div class="menu-item card"
                     onclick="selectMenu(<?php echo $menu['id']; ?>, '<?php echo $menu['menu_name']; ?>', <?php echo $menu['price']; ?>, '<?php echo $menu['image']; ?>')">
+                    <div class="card-img">
+                        <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image"
+                            class="rounded-circle img-fluid" width="100">
+                    </div>
                     <div class="card-body">
-                        <div class="card-img">
-                            <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image"
-                                class="rounded-circle img-fluid" width="100">
-                        </div>
-                        <h5 class="card-title"><?php echo $menu['menu_name']; ?></h5>
+                        <h class="card-title"><?php echo $menu['menu_name']; ?></h>
                         <p class="card-text">Price: ₱<?php echo number_format($menu['price'], 2); ?></p>
                     </div>
                 </div>
             <?php } ?>
         </div>
+    
+    </div>
+
+    <div class="right-order">
+
+
+                  <div class="menu-items-left-container">
+            <div class="menu-items-details" id="selectedMenuDetails">
+                <!-- Cards will be appended here by JavaScript -->
+                 
+            </div>
+
+            <h2>Total Amount: ₱<span id="totalAmountDisplay">0.00</span></h2>
+        <input type="hidden" name="total_amount" id="total_amount" value="0">
+        <button type="submit" name="btn">Place Order</button>
+
+             </div>
+
+    </div>
+
+    </div>
+    
+       
+
+        
+
+
     </form>
 </div>
+</div>
+</div>
+
+
 <script>
     function selectMenu(menuId, menuName, price, image) {
         const menuDetails = document.getElementById('selectedMenuDetails');
-        const existingRow = document.querySelector(`tr[data-menu-id="${menuId}"]`);
+        const existingCard = document.querySelector(`div[data-menu-id="${menuId}"]`);
 
-        if (existingRow) {
-            const quantitySpan = existingRow.querySelector('.quantity');
-            const quantityInput = existingRow.querySelector('input[name="quantity[]"]');
+        if (existingCard) {
+            const quantitySpan = existingCard.querySelector('.quantity');
+            const quantityInput = existingCard.querySelector('input[name="quantity[]"]');
             quantityInput.value = parseInt(quantityInput.value) + 1; // Increase quantity by 1
             quantitySpan.textContent = quantityInput.value; // Update displayed quantity
-            updateSubtotal(existingRow); // Update subtotal for the existing row
+            updateSubtotal(existingCard); // Update subtotal for the existing card
         } else {
-            const newRow = document.createElement('tr');
-            newRow.setAttribute('data-menu-id', menuId); // Set data attribute for menu ID
-            newRow.innerHTML = `
-            <td><img src="./uploaded_image/${image}" alt="Menu Image" class="rounded-circle img-fluid" width="100"></td>
-            <td>${menuName}</td>
-            <td>₱${price.toFixed(2)}</td>
-            <td><span class="quantity">1</span><input type="hidden" name="quantity[]" value="1"></td>
-            <td>₱<span class="subtotal">${price.toFixed(2)}</span></td>
-            <input type="hidden" name="menu_id[]" value="${menuId}">
-            <input type="hidden" name="menu_name[]" value="${menuName}">
-            <input type="hidden" name="price[]" value="${price.toFixed(2)}">
+            const newCard = document.createElement('div');
+            newCard.setAttribute('data-menu-id', menuId); // Set data attribute for menu ID
+            newCard.classList.add('card');
+            newCard.innerHTML = `
+            <div class="card-body">
+                <div class="card-img">
+                    <img src="./uploaded_image/${image}" alt="Menu Image" class="rounded-circle img-fluid" width="100">
+                </div>
+                <h5 class="card-title">${menuName}</h5>
+                <p class="card-text">Price: ₱${price.toFixed(2)}</p>
+                <p class="card-text">Quantity: <span class="quantity">1</span><input type="hidden" name="quantity[]" value="1"></p>
+                <p class="card-text">Subtotal: ₱<span class="subtotal">${price.toFixed(2)}</span></p>
+                <input type="hidden" name="menu_id[]" value="${menuId}">
+                <input type="hidden" name="menu_name[]" value="${menuName}">
+                <input type="hidden" name="price[]" value="${price.toFixed(2)}">
+            </div>
         `;
-            menuDetails.appendChild(newRow);
+            menuDetails.appendChild(newCard);
         }
 
         updateTotalAmount(); // Update total amount
     }
 
-    function updateSubtotal(row) {
-        const price = parseFloat(row.querySelector('td:nth-child(3)').textContent.replace('₱', ''));
-        const quantity = parseInt(row.querySelector('input[name="quantity[]"]').value);
+    function updateSubtotal(card) {
+        const price = parseFloat(card.querySelector('.card-text:nth-child(3)').textContent.replace('Price: ₱', ''));
+        const quantity = parseInt(card.querySelector('input[name="quantity[]"]').value);
         const subtotal = price * quantity;
-        row.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+        card.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     }
 
     function updateTotalAmount() {
@@ -116,7 +154,7 @@ if (isset($_POST['btn'])) {
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('selectedMenuDetails').addEventListener('change', (e) => {
             if (e.target.name === 'quantity[]') {
-                updateSubtotal(e.target.closest('tr'));
+                updateSubtotal(e.target.closest('.card'));
                 updateTotalAmount();
             }
         });
