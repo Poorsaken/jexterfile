@@ -1,8 +1,8 @@
-
 <?php
 include ('includes/header.php');
 include ('classes/Orders.php');
 include ('classes/Menus.php');
+
 $Order = new Orders();
 $Menus = new Menus();
 $MenuList = $Menus->displayMenu();
@@ -34,6 +34,9 @@ if (isset($_POST['btn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Page</title>
     <!-- Include your CSS stylesheets and other necessary scripts here -->
+    <style>
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
 <div class="front-desk-parent">
@@ -42,110 +45,98 @@ if (isset($_POST['btn'])) {
             <!-- Include your navigation menu here if necessary -->
         </div>
 
-
         <div class="right-content">
-            
             <div class="order-container">
                 <form action="" method="POST" id="myForm" class="form-container">
                     <div class="display-order-container">
-                        
                         <div class="left-order">
-
-                       
-
-                        <div class="category-clickable">
-                            <div class="select-category">
-
-                                <p>Select A Category</p>
-                            </div>
-
-                            <div class="cat-menu">
-
-                                <div class="category-image">
-                                    <img src="./img/serving-dish.png"/>
+                            <div class="category-clickable">
+                                <div class="select-category">
+                                    <p>Select A Category</p>
                                 </div>
-                                <div class="">
-                                <h>Main Dish</h>
 
-                                 <?php
-                                        // Display count of main dishes using the countByCategory() method
+                                <div class="cat-menu" onclick="filterMenu('All')">
+                                    <div class="category-image">
+                                        <img src="./img/serving-dish.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>All Menu</h>
+                                        <?php
+                                        $allMenuCount = count($MenuList);
+                                        echo "<p class='numberofitems'>$allMenuCount items</p>";
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="cat-menu" onclick="filterMenu('Main Dish')">
+                                    <div class="category-image">
+                                        <img src="./img/serving-dish.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>Main Dish</h>
+                                        <?php
                                         $mainDishCount = $Menus->countByCategory('Main Dish');
                                         echo "<p class='numberofitems'>$mainDishCount items</p>";
                                         ?>
-
-                         
-      
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="cat-menu">
-
-                                <div class="category-image">
-                                    <img src="./img/soup.png"/>
-                                </div>
-                                <div class="">
-                                <h>Soup</h>
-                                 <?php
-                                   $SoupCount = $Menus->countByCategory('Soup');
+                                <div class="cat-menu" onclick="filterMenu('Soup')">
+                                    <div class="category-image">
+                                        <img src="./img/soup.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>Soup</h>
+                                        <?php
+                                        $SoupCount = $Menus->countByCategory('Soup');
                                         echo "<p class='numberofitems'>$SoupCount items</p>";
                                         ?>
-                                  
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="cat-menu">
-
-                                <div class="category-image">
-                                    <img src="./img/salad.png"/>
-                                </div>
-                                <div class="">
-                                <h>Salad</h>
-                                 <?php
-                                   $SaladCount = $Menus->countByCategory('Salad');
+                                <div class="cat-menu" onclick="filterMenu('Salad')">
+                                    <div class="category-image">
+                                        <img src="./img/salad.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>Salad</h>
+                                        <?php
+                                        $SaladCount = $Menus->countByCategory('Salad');
                                         echo "<p class='numberofitems'>$SaladCount items</p>";
                                         ?>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="cat-menu">
-
-                                <div class="category-image">
-                                    <img src="./img/burger.png"/>
-                                </div>
-                                <div class="">
-                                <h>Appetizer</h>
-                                 <?php
-                                   $AppetizerCount = $Menus->countByCategory('Soup');
+                                <div class="cat-menu" onclick="filterMenu('Appetizer')">
+                                    <div class="category-image">
+                                        <img src="./img/burger.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>Appetizer</h>
+                                        <?php
+                                        $AppetizerCount = $Menus->countByCategory('Appetizer');
                                         echo "<p class='numberofitems'>$AppetizerCount items</p>";
                                         ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="cat-menu">
-
-                                <div class="category-image">
-                                    <img src="./img/cupcake.png"/>
-                                </div>
-                                <div class="">
-                                <h>Dessert</h>
-                                 <?php
-                                   $DessertCount = $Menus->countByCategory('Soup');
+                                <div class="cat-menu" onclick="filterMenu('Dessert')">
+                                    <div class="category-image">
+                                        <img src="./img/cupcake.png"/>
+                                    </div>
+                                    <div class="">
+                                        <h>Dessert</h>
+                                        <?php
+                                        $DessertCount = $Menus->countByCategory('Dessert');
                                         echo "<p class='numberofitems'>$DessertCount items</p>";
                                         ?>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            
-                        </div>
-                           
-                            <div id="menu_items" class="menu-items-container">
-                                  <div class="your-menu">
 
-                                <p>All Menu</p>
-                            </div>
+                            <div id="menu_items" class="menu-items-container">
+                                <div class="your-menu">
+                                    <p>All Menu</p>
+                                </div>
                                 <?php foreach ($MenuList as $menu) { ?>
-                                    <div class="menu-item card"
-                                         onclick="selectMenu(<?php echo $menu['id']; ?>, '<?php echo $menu['menu_name']; ?>', <?php echo $menu['price']; ?>, '<?php echo $menu['image']; ?>')">
+                                    <div class="menu-item card" data-category="<?php echo $menu['category']; ?>" onclick="selectMenu(<?php echo $menu['id']; ?>, '<?php echo $menu['menu_name']; ?>', <?php echo $menu['price']; ?>, '<?php echo $menu['image']; ?>')">
                                         <div class="card-img">
-                                            <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image"
-                                                 class="rounded-circle img-fluid" width="100">
+                                            <img src="./uploaded_image/<?php echo $menu['image']; ?>" alt="User Image" class="rounded-circle img-fluid" width="100">
                                         </div>
                                         <div class="card-body">
                                             <h class="card-title"><?php echo $menu['menu_name']; ?></h>
@@ -155,24 +146,22 @@ if (isset($_POST['btn'])) {
                                 <?php } ?>
                             </div>
                         </div>
+
                         <div class="right-order">
                             <div class="menu-items-left-container">
                                 <div class="order-summary-header">
-                                    
-                                <div class="order-summary">
-                                    <h1> Order Summary</h1>
-                                </div>
-                                <a href="OrderDisplay.php">
-
-
                                     <div class="order-summary">
-                                        <h>View Orders</h>
+                                        <h1> Order Summary</h1>
                                     </div>
-                                </a>
+                                    <a href="OrderDisplay.php">
+                                        <div class="order-summary">
+                                            <h>View Orders</h>
+                                        </div>
+                                    </a>
                                 </div>
-                                
-                                <div class="menu-items-details" id="selectedMenuDetails">
-                                </div>
+
+                                <div class="menu-items-details" id="selectedMenuDetails"></div>
+
                                 <div class="payment-summary">
                                     <h1>Payment Summary</h1>
                                     <div class="subtotal-payment">
@@ -217,20 +206,16 @@ if (isset($_POST['btn'])) {
                     </div>
                     <div class="card-invoice">
                         <div class="shanghai">
-                        <div class = "card-title">
-                        
-                        <h1 class="card-title">${menuName}</h1>
-                        </div>
-
-                         <div class="card-remove">
-        <img src="./img/close.png" alt="Remove" class="remove-img" onclick="removeMenu(${menuId})">
-    </div>
-                        
+                            <div class="card-title">
+                                <h1 class="card-title">${menuName}</h1>
+                            </div>
+                            <div class="card-remove">
+                                <img src="./img/close.png" alt="Remove" class="remove-img" onclick="removeMenu(${menuId})">
+                            </div>
                         </div>
                         <p class="card-text">x<span class="quantity">1</span><input type="hidden" name="quantity[]" value="1"></p>
                         <p class="card-text">₱${price.toFixed(2)}</p>
                         <p class="card-text-subtotal">₱<span class="subtotal">${price.toFixed(2)}</span></p>
-                        
                     </div>
                     <input type="hidden" name="menu_id[]" value="${menuId}">
                     <input type="hidden" name="menu_name[]" value="${menuName}">
@@ -248,40 +233,42 @@ if (isset($_POST['btn'])) {
         const quantity = parseInt(card.querySelector('input[name="quantity[]"]').value);
         const subtotal = price * quantity;
         card.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+        updateTotalAmount(); // Update total amount
     }
 
     function updateTotalAmount() {
-        const quantities = document.querySelectorAll('input[name="quantity[]"]');
+        const subtotals = document.querySelectorAll('.subtotal');
         let total = 0;
-        quantities.forEach((input) => {
-            const price = parseFloat(input.closest('.card-body-invoice').querySelector('input[name="price[]"]').value);
-            const quantity = parseInt(input.value);
-            total += price * quantity;
+        subtotals.forEach(subtotal => {
+            total += parseFloat(subtotal.textContent);
         });
-        document.getElementById('total_amount').value = total.toFixed(2);
         document.getElementById('totalAmountDisplay').textContent = total.toFixed(2);
+        document.getElementById('total_amount').value = total.toFixed(2);
     }
 
     function removeMenu(menuId) {
         const card = document.querySelector(`div[data-menu-id="${menuId}"]`);
         if (card) {
             card.remove();
-            updateTotalAmount();
+            updateTotalAmount(); // Update total amount
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('selectedMenuDetails').addEventListener('change', (e) => {
-            if (e.target.name === 'quantity[]') {
-                updateSubtotal(e.target.closest('.card'));
-                updateTotalAmount();
-            }
-        });
-    });
+    function filterMenu(category) {
+        const allMenuItems = document.querySelectorAll('.menu-item');
+        if (category === 'All') {
+            allMenuItems.forEach(item => item.classList.remove('hidden'));
+        } else {
+            allMenuItems.forEach(item => {
+                if (item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+    }
 </script>
 
-<?php
-include ('includes/footer.php');
-?>
 </body>
 </html>

@@ -15,7 +15,7 @@ $DB->connectDB();
     <link rel="stylesheet" type="text/css" href="css/MenuUpdateView.css">
     
     <!-- <link rel="stylesheet" type="text/css" href="css/OrderAdd.css"> -->
-     <link rel="stylesheet" type="text/css" href= "css/OrderAdds.css">
+     <link rel="stylesheet" type="text/css" href= "css/OrderAdd.css">
     <link rel="stylesheet" type="text/css" href="css/index-parent.css">
     <link rel="stylesheet" type="text/css" href="css/navigation.css">
     <link rel="stylesheet" type="text/css" href="css/reservations.css">
