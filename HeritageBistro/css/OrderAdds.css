@@ -1,0 +1,169 @@
+*{
+
+
+margin: 0%;
+padding: 0%;
+box-sizing: border-box;
+
+
+}
+
+
+.menu-item{
+
+
+    width: 200px;
+    height: 200px;
+  
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 1%;
+
+}
+
+.card-img img{ 
+
+
+    width: 100%;
+    object-fit: cover;
+    height: 100px;
+    background-color: azure;
+}
+
+.display-order-container{
+
+    display: flex;
+
+}
+
+.left-order{
+
+    width: 100%;
+    height: 90vh;
+ 
+    
+}
+
+.right-order{
+
+
+    width: 5%;
+    
+}
+
+.menu-items-container{
+    max-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+
+.menu-items-left-container{
+
+    width: 460PX;
+    height: 90vh;
+    border-radius: 5px;
+    padding: 35px;
+
+    background-color: #FFFFFF;
+}
+
+.menu-items-details{
+
+   
+    height: 500px;
+    overflow-y: auto;
+}
+
+.card-body{
+
+
+    width: 300PX;
+}
+
+.order-container{
+
+
+    padding: 3%;
+}
+
+
+.order-summary h1{
+
+
+     font-size: 24px;
+     font-weight: 500;
+}
+
+.card-img-invoice{
+
+       width: 40%;
+}
+
+.card-img-invoice img{
+
+    width: 100%;
+    object-fit: cover;
+    height: 100px;
+    border-radius: 5px;
+    background-color: azure;
+
+}
+
+
+
+.card-body-invoice{
+
+    display: flex;
+   
+
+
+}
+
+.card-invoice{
+
+    margin-left: 4%;
+    width: 100%;
+}
+
+.card-invoice h1{
+
+    font-size: 16px;
+}
+
+.card-text-subtotal{
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.front-desk-parent{
+
+
+    background-color: #f5f5f7;
+}
+
+.payment-summary{
+
+
+    width: 100%;
+    padding: 3%;
+    background-color: #f5f5f7;
+    height: 200px;
+}
+
+.payment-summary h1{
+
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.subtotal-payment{
+
+    display: flex;
+    justify-content: space-between;
+}
