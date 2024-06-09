@@ -88,10 +88,19 @@
 
 <div class="parents">
     <div class="logo">
-        <h1>Eventr</h1>
+       <img src='img/Black and White Chef Food Logo.png' alt=''/>
     </div>
-
+  <div class="customize">
+            <div class="nav_icon">
+                <img src="img/mage_dashboard.png"/>
+            </div>
+            <div class="nav_title">
+                <p>Dashboard</p>
+            </div>
+        </div>
     <div class="navlinks" id="active-events">
+
+    
         <div class="nav_icon">
             <img src="img/homeicon.png"/>
         </div>
@@ -124,7 +133,7 @@
                 <img src="img/basil_add-outline.png"/>
             </div>
             <div class="nav_title">
-                <a href="javascript:void(0)" onclick="MenuAdd(); setActiveNavLink('add-event')">Add Menu</a>
+                <a style="" href="javascript:void(0)" onclick="MenuAdd(); setActiveNavLink('add-event')">Add Menu</a>
             </div>
         </div>
 
@@ -138,12 +147,16 @@
         </div>
     </div>
 
-    <div class="logout" onclick="Logout()">
-        <div class="logout_text">
-            <a href="javascript:void(0)" class="logoutdiv">Logout</a>
-        </div>
-        <div class="logout_icon">
-            <img src="../img/Vector.png" alt="">
+    <div class="logout-parent">
+
+
+        <div class="logout" onclick="Logout()">
+            <div class="logout_text">
+                <a href="javascript:void(0)" class="logoutdiv">Logout</a>
+            </div>
+            <div class="logout_icon">
+                <img src="../img/Vector.png" alt="">
+            </div>
         </div>
     </div>
 </div>

@@ -69,6 +69,23 @@ class Menus
 
         return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
+
+
+    //DISPLAY COUNT IN CATEGORY
+function countByCategory($category) {
+    global $con; // Assuming $con is your PDO connection object
+
+    $sql = "SELECT COUNT(*) FROM tbl_menus WHERE category = :category";
+
+    $stmt = $con->prepare($sql);
+    $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchColumn(); // Fetch the count directly
+}
+
+
+
     // DISPLAY THE SPECIFIC DATA OF THAT ID
     function getMenuById($id)
     {

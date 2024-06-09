@@ -1,0 +1,210 @@
+*{
+
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+
+
+.parent-reservation{
+
+
+    display: flex;
+
+}
+
+.left-reservation{
+
+    width: 60%;
+    margin: 3%;
+}
+
+.right-reservation{
+
+
+    width: 40%;
+       margin-top: 5%;
+
+}
+
+
+.three-div{
+
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+
+.image{
+
+    width: 330px;
+    height: 250px;
+  
+
+   
+
+}
+
+.image img{
+
+  border-radius: 15px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.discover{
+
+     margin: 1%;
+}
+
+.discover h {
+
+
+    font-size: 40px;
+   
+}
+
+.reservation-header{
+
+    width: 70%;
+}
+.reservation-footer{
+
+    width: 70%;
+    margin-top: 3%;
+}
+.reservation-footer-submit{
+
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3%;
+
+}
+
+.reservation-form{
+
+    margin-top: 5%;
+}
+
+.reservation-title{
+
+    font-weight: 500;
+    font-size: 24px;
+}
+
+
+
+.reservation-input input{
+
+
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0 ,0.2);
+    padding: 1%;
+
+}
+
+.fullname{
+
+    margin-top: 2%;
+   
+}
+
+.fullname input{
+
+    width: 63%;
+   
+}
+.time_and_date ,.phone_guest {
+
+    display: flex;
+    margin-top: 2%;
+}
+.time , .phonenumber ,.guest{
+
+    margin-right: 6%;
+}
+.submit_btn_reservation{
+
+    width: 50%;
+    height: 50px;
+    border-radius: 5rem;
+    border: none;
+  background-color: #9E0505;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.reservation-header-img img{
+
+    height: 100px;
+    width: 40%;
+  
+    display: flex;
+    justify-content: start;
+    object-fit: contain;
+}
+
+.two-div{
+
+    width: 100%;
+    height: 350px;
+    display: flex;
+  
+}
+
+.gordon, .details{
+
+
+    width: 50%;
+}
+.gordon{
+ 
+    display: flex;
+
+   
+}
+
+.gordon img{
+
+  
+    width: 100%;
+    object-fit: contain;
+}
+
+.socials{
+
+    display: flex;
+    margin-top: 1%;
+ 
+ 
+}
+
+.socials,.tweet{
+
+    margin-right: 2%;
+}
+
+.details p{
+
+    font-weight: 500;
+}
+
+.social-media-header{
+
+    margin-top: 5%;
+}
+
+.tweet img {
+
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}

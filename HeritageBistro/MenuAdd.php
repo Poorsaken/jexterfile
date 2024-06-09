@@ -37,11 +37,11 @@ $userid = $_SESSION['userid'];
 
             <div class="welcome-header">
 
-            <div class="welcome">
-                <h>Welcome, <?php echo $username , $userid; ?>!</h> 
-                <p> How's your day?</p>
+                <div class="welcome">
+                    <h>Welcome, <?php echo $username , $userid; ?>!</h> 
+                    <p> How's your day?</p>
 
-            </div>
+                </div>
             </div>
 
             <div class="menu-form">
