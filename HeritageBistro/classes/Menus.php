@@ -75,7 +75,7 @@ class Menus
 function countByCategory($category) {
     global $con; // Assuming $con is your PDO connection object
 
-    $sql = "SELECT COUNT(*) FROM tbl_menus WHERE category = :category";
+    $sql = "SELECT COUNT(*) FROM tbl_menus WHERE category = :category AND status = 1";
 
     $stmt = $con->prepare($sql);
     $stmt->bindParam(':category', $category, PDO::PARAM_STR);
